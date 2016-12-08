@@ -12,6 +12,7 @@ void catWithFile(char *file) {
     fp = fopen(file, "r");
     if (fp == NULL) {
         printf("Failed to open file %s\n", file);
+        return; //break to prevent segmentation fault
     }
     while ((read = getline(&line, &len, fp)) != -1) {
         printf("%s", line);
@@ -24,7 +25,7 @@ void catWithFile(char *file) {
 void cat() {
     char str[256];
     for(;;){
-        fgets(str, 256, stdin);
+        fgets(str, 256, stdin); // use fgets becuase gets is unsafe
         printf("%s", str);
     }
 }
